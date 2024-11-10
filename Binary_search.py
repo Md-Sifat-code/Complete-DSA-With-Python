@@ -1,37 +1,43 @@
-#What is Linear Search Algorithm?
-# ---> Linear Search is a simple searching algorithm used to find an element in a list or array. It works by
-# sequentially checking each element of the list until it finds a match or reaches the end of the list.
-# If the target element is found, it returns the index of that element; otherwise, it returns -1 indicating that
-# the element is not present.
+# Function to perform binary search on a sorted list
+def binary_search(arr, target):
+    # Initialize two pointers for the start and end of the list
+    low = 0
+    high = len(arr) - 1
+
+    # Continue searching while low pointer is less than or equal to high pointer
+    while low <= high:
+        # Calculate the middle index (using // for integer division)
+        mid = low + (high - low) // 2
+
+        # If the middle element matches the target, return the index
+        if arr[mid] == target:
+            return mid
+
+        # If the middle element is less than the target,
+        # move the low pointer to mid + 1 (search right half)
+        elif arr[mid] < target:
+            low = mid + 1
+
+        # If the middle element is greater than the target,
+        # move the high pointer to mid - 1 (search left half)
+        else:
+            high = mid - 1
+
+    # If we exit the loop, the target is not in the list
+    return -1
 
 
-# A Real Life Example about Linear Search Algorithm:--
-# ----->> Imagine you’re looking for a book in a stack of books piled on a table. The books are not arranged in any particular
-# order, so you start from the top and check each book one by one. As soon as you find the book you’re looking for, you
-# stop searching. If you reach the bottom of the pile and still haven’t found it, you conclude that the book isn’t in the stack.
+# Main block to demonstrate binary search
+if __name__ == "__main__":
+    # Example sorted list to search in
+    arr = [1, 3, 5, 7, 9, 11, 13, 15, 17]
+    target = 11  # Element we are searching for
 
+    # Perform binary search and capture the result
+    result = binary_search(arr, target)
 
-# Time Complexity
-# Best Case: O(1) - The element is found at the first position.
-# Worst Case: O(n) - The element is either at the last position or not present in the list.
-# Average Case: O(n) - On average, half the elements will be checked.
-
-
-
-# COde Example:--->
-
-def linear_search(arr, t):
-    for index, element in enumerate(arr):
-        if element == target:
-            return index  # Return the index if the target is found
-    return -1  # Return -1 if the target is not found
-
-# Example usage
-numbers = [10, 25, 30, 45, 50]
-target = 45
-
-result = linear_search(numbers, target)
-if result != -1:
-    print(f"Element found at index {result}")
-else:
-    print("Element not found")
+    # Output the result based on whether the target was found
+    if result != -1:
+        print(f"Element found at index {result}")
+    else:
+        print("Element not found in the list")
