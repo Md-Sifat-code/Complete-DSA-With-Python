@@ -20,3 +20,4 @@ try:
     print(f"Index of 20 is {index}.")
 except ValueError:
     print("Value not found in the list.")
+    print("Value not found in the list.")
